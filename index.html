@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+   <body>
+      <script>
+         setTimeout(function(){
+            window.location.href = 'https://doomguy323.github.io/Stockers/';
+         }, 5000);
+      </script>
+<div class="loader">STOCKERS.</div>
+	   <style>
+		   $background: black;
+$foreground: white;
+$size: 80px;
+
+body {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: Arial, sans-serif;
+	font-size: 28px;
+	background: $background;
+	color: $foreground;
+}
+
+.loader {
+	opacity: 0;
+	width: $size;
+	height: $size;
+	border: 2px solid $foreground;
+	border-radius: $size;
+    
+	&.active {
+		opacity: 1;
+	}
+
+	.piece {
+		opacity: 0;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+	   </style>
+	   
+	   <script>
+		   // set duration
+
+var duration = 350;
+
+// break text into chunks
+
+$(".loader")
+	.html(
+		"<div class='piece'>" +
+		$(".loader").html().match(/.{1,2}/g).join("</div><div class='piece'>") +
+		"</div>"
+	)
+  	.addClass("active");
+
+// animation function
+
+var show = function(elem) {
+	$(".piece").css({opacity: 0});
+	$(elem).css({opacity: 1});
+	
+	setTimeout(function(){
+		show(elem);
+	}, duration * ($(".piece").length));
+}
+
+// set animation CSS
+
+$(".piece").each(function(i,e){
+	setTimeout(function(){
+		show(e);
+	}, duration * i);
+})
+	   </script>
+	   </body>
+</html>
